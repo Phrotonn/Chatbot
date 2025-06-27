@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proton Chat</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="sidebar">
+            <div class="logo">ProtonAI</div>
+            <button id="new-chat" class="new-chat-btn">+ New Chat</button>
+            <div class="chat-history" id="chat-history">
+                <!-- Chat history will be populated here -->
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="chat-area" id="chat-area">
+                <!-- Messages will appear here -->
+                <div class="welcome-message">
+                    <h1>Welcome to ProtonAI</h1>
+                    <p>How can I help you today?</p>
+                </div>
+            </div>
+            <div class="input-area">
+                <div class="input-container">
+                    <textarea id="user-input" placeholder="Message Proton..." rows="1"></textarea>
+                    <button id="send-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+                <div class="disclaimer">
+                    <p>Proton may produce inaccurate information about people, places, or facts.</p>
+                    <p>[Note] This is just a testing website, its currently a copy of Deepseek</p>
+                    <p>[Note] Testing Phase, Credits : Andrej Karpathy </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
