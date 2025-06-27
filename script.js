@@ -256,24 +256,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    async function sendMessage() {
-      try {
-        const response = await fetch(API_URL, {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message: userInput })
-        });
-        
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
-        const data = await response.json();
-        addMessageToChat('assistant', data.response);
-      } catch (error) {
-        console.error('Fetch error:', error);
-        addMessageToChat('assistant', "Connection error. Please try again.");
-      }
+async function sendMessage() {
+  const userInput = document.getElementById("user-input").value;
+  
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      mode: "cors",  // Required for CORS
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: userInput }),
+    });
+
+    if (!response.ok) throw new Error("API request failed");
+    
+    const data = await response.json();
+    console.log("AI Response:", data.response);
+    // Display the response in your chat UI
+    
+  } catch (error) {
+    console.error("Error:", error);
+    // Show error to user (e.g., "Failed to connect to AI")
+  }
+}
     
 });
