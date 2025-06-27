@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sendBtn = document.getElementById('send-btn');
     const newChatBtn = document.getElementById('new-chat');
     const chatHistoryEl = document.getElementById('chat-history');
-    const API_URL = "https://2274-34-31-197-199.ngrok-free.app/chat";  // Use HTTPS!
+    const API_URL = "https://2274-34-31-197-199.ngrok-free.app/chat";
     
     // Chat state
     let currentChatId = null;
@@ -255,4 +255,25 @@ document.addEventListener('DOMContentLoaded', function() {
             sendMessage();
         }
     }
+    
+    async function sendMessage() {
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: userInput })
+        });
+        
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        const data = await response.json();
+        addMessageToChat('assistant', data.response);
+      } catch (error) {
+        console.error('Fetch error:', error);
+        addMessageToChat('assistant', "Connection error. Please try again.");
+      }
+    
 });
