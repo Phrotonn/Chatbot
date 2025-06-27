@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sendBtn = document.getElementById('send-btn');
     const newChatBtn = document.getElementById('new-chat');
     const chatHistoryEl = document.getElementById('chat-history');
+    const API_URL = "http://Phrotonn.pythonanywhere.com/chat";
     
     // Chat state
     let currentChatId = null;
@@ -219,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const typingId = showTypingIndicator();
         
-        fetch('http://localhost:5000/chat', {
+        fetch(API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
