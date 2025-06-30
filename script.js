@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sendBtn = document.getElementById('send-btn');
     const newChatBtn = document.getElementById('new-chat');
     const chatHistoryEl = document.getElementById('chat-history');
-    const API_URL = "http://127.0.0.1:5000/chat";  // Replace with ngrok URL when using Colab
+    const API_URL = "https://62e8-34-53-25-214.ngrok-free.app";
 
     let currentChatId = null;
     let chats = {};
