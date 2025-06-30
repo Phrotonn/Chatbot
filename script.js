@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sendBtn = document.getElementById('send-btn');
     const newChatBtn = document.getElementById('new-chat');
     const chatHistoryEl = document.getElementById('chat-history');
-    const API_URL = "https://1dda-34-53-25-214.ngrok-free.app";
+    const API_URL = "https://6ef8-34-53-25-214.ngrok-free.app";
 
     let currentChatId = null;
     let chats = {};
