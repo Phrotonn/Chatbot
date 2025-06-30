@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sendBtn = document.getElementById('send-btn');
     const newChatBtn = document.getElementById('new-chat');
     const chatHistoryEl = document.getElementById('chat-history');
-    const API_URL = "https://d70c-34-53-25-214.ngrok-free.app";
+    const API_URL = "http://127.0.0.1:5000/chat";  // Replace with ngrok URL when using Colab
 
     let currentChatId = null;
     let chats = {};
@@ -68,14 +68,14 @@ document.addEventListener('DOMContentLoaded', function () {
             chatArea.appendChild(welcomeMessage);
         } else {
             chat.messages.forEach(msg => {
-                addMessageToChat(msg.role, msg.content, false);
+                addMessageToChat(msg.role, msg.content, false, msg.timestamp);
             });
         }
 
         updateChatHistoryUI();
     }
 
-    function addMessageToChat(sender, message, saveToHistory = true) {
+    function addMessageToChat(sender, message, saveToHistory = true, time = null) {
         if (saveToHistory) {
             saveMessage(sender, message);
         }
@@ -99,7 +99,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const timestamp = document.createElement('div');
         timestamp.className = 'message-timestamp';
-        timestamp.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const messageTime = time ? new Date(time) : new Date();
+        timestamp.textContent = messageTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
         messageDiv.appendChild(contentDiv);
         messageDiv.appendChild(timestamp);
@@ -138,7 +139,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const message = userInput.value.trim();
         if (!message) return;
 
-        addMessageToChat('user', message);
+        const timestamp = new Date().toISOString();
+        addMessageToChat('user', message, true, timestamp);
         userInput.value = '';
         userInput.style.height = 'auto';
 
@@ -152,10 +154,11 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(res => res.json())
             .then(data => {
                 removeTypingIndicator(typingId);
+                const replyTime = new Date().toISOString();
                 if (data.response) {
-                    addMessageToChat('assistant', data.response);
+                    addMessageToChat('assistant', data.response, true, replyTime);
                 } else {
-                    addMessageToChat('assistant', "Sorry, I couldn't process your request.");
+                    addMessageToChat('assistant', "Sorry, I couldn't process your request.", true, replyTime);
                 }
             })
             .catch(err => {
