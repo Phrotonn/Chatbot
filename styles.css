@@ -1,12 +1,16 @@
 :root {
     --primary-color: #4f46e5;
-    --primary-hover: #4338ca;
-    --sidebar-bg: #f9fafb;
-    --chat-bg: #ffffff;
-    --text-color: #1f2937;
-    --text-light: #6b7280;
-    --border-color: #e5e7eb;
-    --assistant-bg: #f3f4f6;
+    --primary-hover: #4032de;
+    --sidebar-bg: rgb(45, 45, 45);
+    --chat-bg: rgb(69, 69, 69);
+    --text-color: #8a8a93;
+    --text-light: #8a8a93;
+    --border-color: #393838;
+    --assistant-bg: #f5f3f3;
+}
+
+.logo{
+    color: rgb(97, 73, 234);
 }
 
 * {
@@ -210,6 +214,31 @@ textarea:focus {
 
 .typing-dot:nth-child(3) {
     animation-delay: 0.4s;
+}
+
+.sender-label {
+    font-weight: 600;
+    color: #4f46e5; 
+    margin-bottom: 4px;
+    display: block;
+}
+
+.message-timestamp {
+    color: #6b7280;
+    font-size: 0.8em;
+    margin-top: 2px;
+}
+
+.user-message .message-timestamp {
+    text-align: right;
+}
+
+.user-message .message-content {
+    color: rgb(207, 207, 207);
+}
+
+.message-content {
+    line-height: 1.6;
 }
 
 @keyframes typingAnimation {
